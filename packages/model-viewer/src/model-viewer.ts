@@ -21,6 +21,7 @@ import {EnvironmentMixin} from './features/environment.js';
 import {LoadingMixin} from './features/loading.js';
 import {SceneGraphMixin} from './features/scene-graph.js';
 import {StagingMixin} from './features/staging.js';
+import { VRMixin } from './features/vr.js';
 import ModelViewerElementBase from './model-viewer-base.js';
 import {FocusVisiblePolyfillMixin} from './utilities/focus-visible.js';
 
@@ -30,7 +31,7 @@ export {CanvasTexture, FileLoader, Loader, NearestFilter} from 'three';
 
 export const ModelViewerElement = AnnotationMixin(SceneGraphMixin(StagingMixin(
     EnvironmentMixin(ControlsMixin(ARMixin(LoadingMixin(AnimationMixin(
-        FocusVisiblePolyfillMixin(ModelViewerElementBase)))))))));
+        FocusVisiblePolyfillMixin(VRMixin(ModelViewerElementBase))))))))));
 
 export type ModelViewerElement = InstanceType<typeof ModelViewerElement>;
 

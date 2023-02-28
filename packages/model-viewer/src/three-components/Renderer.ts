@@ -26,6 +26,7 @@ import {Debugger} from './Debugger.js';
 import {ModelViewerGLTFInstance} from './gltf-instance/ModelViewerGLTFInstance.js';
 import {ModelScene} from './ModelScene.js';
 import TextureUtils from './TextureUtils.js';
+import VRRenderer from './VRRenderer.js';
 
 export interface RendererOptions {
   powerPreference: string;
@@ -94,6 +95,7 @@ export class Renderer extends EventDispatcher {
   public canvas3D: HTMLCanvasElement;
   public textureUtils: TextureUtils|null;
   public arRenderer: ARRenderer;
+  public vrRenderer: VRRenderer;
   public loader = new CachingGLTFLoader(ModelViewerGLTFInstance);
   public width = 0;
   public height = 0;
@@ -161,6 +163,7 @@ export class Renderer extends EventDispatcher {
     }
 
     this.arRenderer = new ARRenderer(this);
+    this.vrRenderer = new VRRenderer(this);
     this.textureUtils =
         this.canRender ? new TextureUtils(this.threeRenderer) : null;
     CachingGLTFLoader.initializeKTX2Loader(this.threeRenderer);
@@ -423,6 +426,7 @@ export class Renderer extends EventDispatcher {
   render(t: number, frame?: XRFrame) {
     if (frame != null) {
       this.arRenderer.onWebXRFrame(t, frame);
+      this.vrRenderer.onWebXRFrame(t, frame);
       return;
     }
 

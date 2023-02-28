@@ -289,7 +289,7 @@ configuration or device capabilities');
       if (!this.loaded) {
         this[$preload] = true;
         this[$updateSource]();
-        await waitForEvent(this, 'load');
+        await waitForEvent(this, 'load'); 
         this[$preload] = false;
       }
     }

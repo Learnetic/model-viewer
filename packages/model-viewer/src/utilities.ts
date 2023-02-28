@@ -47,6 +47,16 @@ export const assertIsArCandidate = () => {
 };
 
 
+export const assertIsVrCandidate = () => {
+  
+  if (HAS_WEBXR_DEVICE_API) {
+    return;
+  }
+
+  throw new Error(
+      'The WebXR Device API is required for VR, but is missing in this browser.');
+}
+
 /**
  * Converts a partial URL string to a fully qualified URL string.
  *

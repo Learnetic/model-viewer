@@ -209,7 +209,7 @@ canvas {
   pointer-events: none;
 }
 
-.slot.ar-button {
+.slot.ar-button, .slot.vr-button {
   -moz-user-select: none;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
@@ -217,7 +217,8 @@ canvas {
   display: var(--ar-button-display, block);
 }
 
-.slot.ar-button:not(.enabled) {
+
+.slot.ar-button:not(.enabled) {§
   display: none;
 }
 
@@ -243,6 +244,14 @@ canvas {
   bottom: 16px;
   right: 16px;
   transform: scale(var(--ar-button-scale, 1));
+  transform-origin: bottom right;
+}
+
+#default-vr-button { 
+  position: absolute;
+  bottom: 16px;
+  right: 80px;
+  transform: scale(var(--vr-button-scale, 1));
   transform-origin: bottom right;
 }
 
@@ -325,6 +334,15 @@ canvas {
           aria-label="View in your space">
         ${ARGlyph}
       </a>
+    </slot>
+  </div>
+
+  <div class="slot vr-button">
+  <slot name="vr-button">
+    <a id="default-vr-button" part="default-vr-button" class="fab">
+      VR
+    </a>
+
     </slot>
   </div>
 

@@ -122,9 +122,12 @@ export class ARRenderer extends EventDispatcher {
     super();
     this.threeRenderer = renderer.threeRenderer;
     this.threeRenderer.xr.enabled = true;
+
   }
 
   async resolveARSession(): Promise<XRSession> {
+
+
     assertIsArCandidate();
 
     const session: XRSession =
@@ -139,6 +142,8 @@ export class ARRenderer extends EventDispatcher {
     await this.threeRenderer.xr.setSession(session);
 
     this.threeRenderer.xr.cameraAutoUpdate = false;
+
+    console.log(session);
 
     return session;
   }
@@ -204,6 +209,7 @@ export class ARRenderer extends EventDispatcher {
     }
 
     const currentSession = await this.resolveARSession();
+    console.log(currentSession);
 
     currentSession.addEventListener('end', () => {
       this.postSessionCleanup();
